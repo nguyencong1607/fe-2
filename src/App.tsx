@@ -1,14 +1,37 @@
 import { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { Layout } from "antd";
-import { Form, Input, Button } from "antd";
+import { Layout, Menu, Form, Input, Button, Table, Modal } from "antd";
+import { useState } from "react";
 
-const { Header, Content, Footer } = Layout;
+const { Header, Sider, Content } = Layout;
 
 function App() {
+  const [open, setOpen] = useState(false);
+
   const onFinish = (values: any) => {
     console.log(values);
   };
+
+  const columns = [
+    { title: "Name", dataIndex: "name" },
+    { title: "Email", dataIndex: "email" },
+    { title: "Role", dataIndex: "role" },
+  ];
+
+  const data = [
+    {
+      key: 1,
+      name: "Nguyen Van cong",
+      email: "cong@gmail.com",
+      role: "Admin",
+    },
+    {
+      key: 2,
+      name: "Tran Van Bang",
+      email: "bang@gmail.com",
+      role: "User",
+    },
+  ];
 
   return (
     <>
@@ -22,10 +45,10 @@ function App() {
             <Link to="#" className="hover:text-gray-200">
               Trang chủ
             </Link>
-            <Link to="/list" className="hover:text-gray-200">
+            <Link to="#" className="hover:text-gray-200">
               Danh sách
             </Link>
-            <Link to="/add" className="hover:text-gray-200">
+            <Link to="#" className="hover:text-gray-200">
               Thêm mới
             </Link>
           </div>
@@ -41,32 +64,83 @@ function App() {
         </div>
       </nav>
 
-      {/* MAIN CONTENT */}
-      <div className="max-w-6xl mx-auto mt-10 px-4 text-center">
-        <h1 className="text-4xl font-bold mb-4">Chào mừng đến với WEB2091</h1>
+      <div className="max-w-6xl mx-auto mt-10 px-4">
+        <h1 className="text-3xl font-bold mb-6 text-center">
+          Dashboard WEB2091
+        </h1>
 
-        <Button type="primary">Click me</Button>
-        <Button type="default">Click me</Button>
-        <Button type="dashed">Click me</Button>
-        <Button type="link">Click me</Button>
-        <Button type="text">Click me</Button>
+        <Layout style={{ minHeight: "300px", marginBottom: 40 }}>
+          <Sider style={{ color: "white" }}>Sidebar</Sider>
 
-        <Layout>
-          <Header style={{ color: "white" }}>Header</Header>
-          <Content style={{ padding: 20 }}>
-            <Form onFinish={onFinish}>
-              <Form.Item label="Username" name="username">
-                <Input placeholder="username" />
-              </Form.Item>
-              <Form.Item>
-                <Button htmlType="submit" type="primary">
-                  Submit
-                </Button>
-              </Form.Item>
-            </Form>
-          </Content>
-          <Footer>Footer</Footer>
+          <Layout>
+            <Header style={{ color: "white" }}>header</Header>
+
+            <Content style={{ padding: 20 }}>content</Content>
+          </Layout>
         </Layout>
+
+        {/* form đăng kí */}
+        <h2 className="font-semibold">Form đăng ký</h2>
+
+        <Form onFinish={onFinish} style={{ maxWidth: 400 }}>
+          <Form.Item
+            name="name"
+            rules={[{ required: true, message: "nhập name" }]}
+          >
+            <Input placeholder="Name" />
+          </Form.Item>
+
+          <Form.Item
+            name="email"
+            rules={[{ required: true, message: "Nhập email" }]}
+          >
+            <Input placeholder="Email" />
+          </Form.Item>
+
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: "Nhập password" }]}
+          >
+            <Input.Password placeholder="Password" />
+          </Form.Item>
+
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form>
+
+        {/* bảng user */}
+        <h1 className="font-semibold">Danh sách User</h1>
+        <br />
+        <Button type="primary" onClick={() => setOpen(true)}>
+          Add User
+        </Button>
+
+        <Table columns={columns} dataSource={data} style={{ marginTop: 20 }} />
+
+        <Modal
+          title="Add User"
+          open={open}
+          onCancel={() => setOpen(false)}
+        >
+          <Form onFinish={onFinish}>
+            <Form.Item name="name">
+              <Input placeholder="Name" />
+            </Form.Item>
+
+            <Form.Item name="email">
+              <Input placeholder="Email" />
+            </Form.Item>
+
+            <Form.Item name="role">
+              <Input placeholder="Role" />
+            </Form.Item>
+
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form>
+        </Modal>
       </div>
 
       <Toaster />
