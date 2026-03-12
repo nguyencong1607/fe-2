@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const { Header, Sider, Content } = Layout;
 
-function App() {
+function Lap1() {
   const [open, setOpen] = useState(false);
 
   const onFinish = (values: any) => {
@@ -38,7 +38,7 @@ function App() {
       <nav className="bg-blue-600 text-white shadow">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link to="#" className="text-xl font-semibold">
-            <strong>WEB2091 App</strong>
+            <strong>WEB2091 Lap1</strong>
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
@@ -118,11 +118,7 @@ function App() {
 
         <Table columns={columns} dataSource={data} style={{ marginTop: 20 }} />
 
-        <Modal
-          title="Add User"
-          open={open}
-          onCancel={() => setOpen(false)}
-        >
+        <Modal title="Add User" open={open} onCancel={() => setOpen(false)}>
           <Form onFinish={onFinish}>
             <Form.Item name="name">
               <Input placeholder="Name" />
@@ -148,4 +144,4 @@ function App() {
   );
 }
 
-export default App;
+export default Lap1;

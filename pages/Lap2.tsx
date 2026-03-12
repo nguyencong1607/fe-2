@@ -1,40 +1,83 @@
-import { Table } from "antd";
-import { Toaster } from "react-hot-toast";
+import { Table, Tag, Button, Space } from "antd";
 
-function Lap2() {
-  const columns = [
+function Lap() {
+  //bai1
+  const columns1 = [
+    { title: "ID", dataIndex: "id" },
     { title: "Name", dataIndex: "name" },
     { title: "Age", dataIndex: "age" },
-    { title: "Major", dataIndex: "majoi" },
+    { title: "Major", dataIndex: "major" },
   ];
 
-  const data = [
+  const data1 = [
     {
       key: 1,
-      name: "Nguyen Van cong",
-      age: "12",
-      majoi: "Hóa",
+      id: 1,
+      name: "Nguyen Van Cong",
+      age: 20,
+      major: "CNTT",
     },
     {
       key: 2,
+      id: 2,
       name: "Tran Van Bang",
-      age: "15",
-      majoi: "Lý",
+      age: 21,
+      major: "mkt",
+    },
+  ];
+
+  // bai 3
+  const columns2 = [
+    { title: "ID", dataIndex: "id" },
+    { title: "Name", dataIndex: "name" },
+    { title: "Email", dataIndex: "email" },
+
+    {
+      title: "Status",
+      dataIndex: "status",
+      render: (status: string) => (
+        <Tag color={status === "active" ? "green" : "red"}>{status}</Tag>
+      ),
+    },
+
+    {
+      title: "Action",
+      render: () => (
+        <Space>
+          <Button type="primary">Edit</Button>
+          <Button danger>Delete</Button>
+        </Space>
+      ),
+    },
+  ];
+
+  const data2 = [
+    {
+      key: 1,
+      id: 1,
+      name: "Nguyen Van Cong",
+      email: "cong@gmail.com",
+      status: "active",
+    },
+    {
+      key: 2,
+      id: 2,
+      name: "Tran Van Bang",
+      email: "bang@gmail.com",
+      status: "inactive",
     },
   ];
 
   return (
-    <>
-      <div>
-        <h1 className="font-semibold">Danh sách User</h1>
-        <br />
-        <Table columns={columns} dataSource={data} style={{ marginTop: 20 }} />
-      </div>
-
-      <Toaster />
-    </>
+    <div style={{ padding: 20 }}>
+      <h2>Bài 1</h2>
+      <Table columns={columns1} dataSource={data1} />
+      <br />
+      <br />
+      <h2>Bài 3</h2>
+      <Table columns={columns2} dataSource={data2} />
+    </div>
   );
 }
 
-export default Lap2;
-//  he eh  ádasdasd
+export default Lap;
