@@ -82,23 +82,31 @@ function App() {
         {/* form đăng kí */}
         <h2 className="font-semibold">Form đăng ký</h2>
 
-        <Form onFinish={onFinish} style={{ maxWidth: 400 }}>
+        <Form onFinish={onFinish} style={{ maxWidth: 400 }} layout="vertical">
           <Form.Item
             name="name"
-            rules={[{ required: true, message: "nhập name" }]}
+            label="Name"
+            rules={[
+              {}
+            ]}
           >
             <Input placeholder="Name" />
           </Form.Item>
 
           <Form.Item
             name="email"
-            rules={[{ required: true, message: "Nhập email" }]}
+            label="Email"
+             rules={[
+              { required: true, message: "Vui lòng nhập email" },
+              { type: "email", message: "Email không hợp lệ" },
+            ]}
           >
             <Input placeholder="Email" />
           </Form.Item>
 
           <Form.Item
             name="password"
+            label="Password"
             rules={[{ required: true, message: "Nhập password" }]}
           >
             <Input.Password placeholder="Password" />
@@ -118,11 +126,7 @@ function App() {
 
         <Table columns={columns} dataSource={data} style={{ marginTop: 20 }} />
 
-        <Modal
-          title="Add User"
-          open={open}
-          onCancel={() => setOpen(false)}
-        >
+        <Modal title="Add User" open={open} onCancel={() => setOpen(false)}>
           <Form onFinish={onFinish}>
             <Form.Item name="name">
               <Input placeholder="Name" />
