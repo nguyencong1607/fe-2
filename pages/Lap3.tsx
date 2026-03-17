@@ -1,7 +1,9 @@
 import { Toaster } from "react-hot-toast";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Select } from "antd";
+import { Option } from "antd/es/mentions";
 
 function Lap3() {
+  //   const [post, setPost] = useState<any>(null);
   const onFinish = (values: any) => {
     console.log(values);
   };
@@ -31,7 +33,7 @@ function Lap3() {
           <Form.Item
             name="password"
             label="Password"
-            rules={[{ required: true, message: "Nhập password"} ]}
+            rules={[{ required: true, message: "Nhập password" }]}
           >
             <Input.Password placeholder="Password" />
           </Form.Item>
@@ -44,7 +46,6 @@ function Lap3() {
         <br />
         <br />
 
-        {/* bảng user */}
         <h1 className="font-semibold">BÀI 2</h1>
         <br />
         <Form onFinish={onFinish} style={{ maxWidth: 400 }} layout="vertical">
@@ -119,12 +120,47 @@ function Lap3() {
             Submit
           </Button>
         </Form>
-      </div>
 
+        
+        <h1 className="text-4xl">Bài 4</h1>
+        <Form layout="vertical" onFinish={onFinish}>
+
+    
+        <Form.Item label="Title" name="title" rules={[{ required: true }]}>
+          <Input placeholder="Nhập tiêu đề" />
+        </Form.Item>
+
+        <Form.Item label="Category" name="category" rules={[{ required: true }]}>
+          <Select placeholder="Chọn danh mục">
+            <Option value="news">News</Option>
+            <Option value="tech">Tech</Option>
+            <Option value="sport">Sport</Option>
+          </Select>
+        </Form.Item>
+
+       
+        <Form.Item label="Slug" name="slug">
+          <Input placeholder="vd: bai-viet-moi" />
+        </Form.Item>
+
+     
+        <Form.Item label="Content" name="content">
+          <Input.TextArea rows={4} placeholder="Nhập nội dung" />
+        </Form.Item>
+
+    
+        <Form.Item label="Image URL" name="image">
+          <Input placeholder="https://..." />
+        </Form.Item>
+
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form>
+      </div>
       <Toaster />
     </>
   );
 }
 
 export default Lap3;
-//  1111
