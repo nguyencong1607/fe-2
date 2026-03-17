@@ -1,4 +1,13 @@
 {
+  "categories": [
+    {
+      "title": "Truyện hay",
+      "description": "hay",
+      "active": true,
+      "id": 1
+    }
+  ],
+  "stories": [],
   "products": [],
   "users": []
 }
