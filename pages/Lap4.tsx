@@ -34,6 +34,7 @@ const StoryForm = () => {
     },
     onSuccess: () => {
       toast.success("Thêm danh mục thành công");
+      
     },
     onError: () => {
       toast.error("Lỗi thêm");
