@@ -9,7 +9,7 @@ export function StoryList() {
     queryFn: async () => {
       const res = await axios.get("http://localhost:3000/stories");
       return res.data;
-    },
+    }
   });
 
   const qc = useQueryClient();
